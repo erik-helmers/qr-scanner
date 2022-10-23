@@ -848,7 +848,10 @@ class QrScanner {
 
     private _onDecodeError(error: Error | string): void {
         // default error handler; can be overwritten in the constructor
-        if (error === QrScanner.NO_QR_CODE_FOUND) return;
+
+        let msg = typeof error==='string' ? error : error.message
+        if (msg.includes(QrScanner.NO_QR_CODE_FOUND)) return;
+
         console.log(error);
     }
 
